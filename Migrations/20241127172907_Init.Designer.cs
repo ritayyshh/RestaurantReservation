@@ -12,8 +12,8 @@ using RestaurantReservation.Data;
 namespace RestaurantReservation.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20241121210513_UpdateOrderRelationship2")]
-    partial class UpdateOrderRelationship2
+    [Migration("20241127172907_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,13 +54,13 @@ namespace RestaurantReservation.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "65c18420-ff89-4c06-ab43-4eea2fd4b033",
+                            Id = "4040c34c-e2be-4220-beb6-5a830a52e387",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "91371a20-06e0-42a7-ae71-3f2053cd7985",
+                            Id = "f27da393-aa25-4717-9a4d-a95ef4c173ff",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -442,6 +442,9 @@ namespace RestaurantReservation.Migrations
                     b.Property<DateTime>("ReservationDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("RestaurantID")
+                        .HasColumnType("int");
+
                     b.Property<string>("SpecialRequests")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -455,6 +458,10 @@ namespace RestaurantReservation.Migrations
                     b.Property<string>("UserID")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("TableReservationID");
 
@@ -584,13 +591,15 @@ namespace RestaurantReservation.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("RestaurantReservation.Models.Order", null)
+                    b.HasOne("RestaurantReservation.Models.Order", "Order")
                         .WithMany("OrderItems")
                         .HasForeignKey("OrderID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("MenuItem");
+
+                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("RestaurantReservation.Models.Review", b =>

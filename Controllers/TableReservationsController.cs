@@ -29,7 +29,8 @@ namespace RestaurantReservation.Controllers
                 {
                     TableReservationID = tr.TableReservationID,
                     TableID = tr.TableID,
-                    UserID = tr.UserID,
+                    RestaurantID = tr.RestaurantID,
+                    Username = tr.Username,
                     ReservationDate = tr.ReservationDate,
                     StartTime = tr.StartTime,
                     EndTime = tr.EndTime,
@@ -53,7 +54,8 @@ namespace RestaurantReservation.Controllers
                 {
                     TableReservationID = tr.TableReservationID,
                     TableID = tr.TableID,
-                    UserID = tr.UserID,
+                    RestaurantID = tr.RestaurantID,
+                    Username = tr.Username,
                     ReservationDate = tr.ReservationDate,
                     StartTime = tr.StartTime,
                     EndTime = tr.EndTime,
@@ -80,6 +82,8 @@ namespace RestaurantReservation.Controllers
                 return NotFound();
             }
 
+            reservation.TableID = updateDTO.TableID;
+            reservation.RestaurantID = updateDTO.RestaurantID;
             reservation.ReservationDate = updateDTO.ReservationDate;
             reservation.StartTime = updateDTO.StartTime;
             reservation.EndTime = updateDTO.EndTime;
@@ -112,7 +116,8 @@ namespace RestaurantReservation.Controllers
             var tableReservation = new TableReservation
             {
                 TableID = createDTO.TableID,
-                UserID = createDTO.UserID,
+                Username = createDTO.Username,
+                RestaurantID = createDTO.RestaurantID,
                 ReservationDate = createDTO.ReservationDate,
                 StartTime = createDTO.StartTime,
                 EndTime = createDTO.EndTime,

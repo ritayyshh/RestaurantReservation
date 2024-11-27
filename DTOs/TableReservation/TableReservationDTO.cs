@@ -4,6 +4,6 @@
     {
         public int ReservationID { get; set; }
         public DateTime ReservationDate { get; set; }
-        public string UserID { get; set; } // Assuming User or Customer details exist
+        public string Username { get; set; } // Assuming User or Customer details exist
     }
 }

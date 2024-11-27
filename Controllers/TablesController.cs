@@ -27,6 +27,7 @@ namespace RestaurantReservation.Controllers
                 .Select(t => new TableBasicDTO
                 {
                     TableID = t.TableID,
+                    RestaurantID = t.RestaurantID,
                     SeatingCapacity = t.SeatingCapacity,
                     IsAvailable = t.IsAvailable
                 })
@@ -54,12 +55,11 @@ namespace RestaurantReservation.Controllers
                 TableID = table.TableID,
                 SeatingCapacity = table.SeatingCapacity,
                 IsAvailable = table.IsAvailable,
-                RestaurantName = table.Restaurant.Name,
                 TableReservations = table.TableReservations.Select(tr => new TableReservationDTO
                 {
                     ReservationID = tr.TableReservationID,
                     ReservationDate = tr.ReservationDate,
-                    UserID = tr.UserID // Assuming this field exists in `TableReservation`
+                    Username = tr.Username // Assuming this field exists in `TableReservation`
                 }).ToList()
             };
 
@@ -139,6 +139,28 @@ namespace RestaurantReservation.Controllers
 
             return NoContent();
         }
+        // GET: api/Tables/Restaurant/5
+        [HttpGet("Restaurant/{restaurantId}")]
+        public async Task<ActionResult<IEnumerable<RestaurantTablesDTO>>> GetTablesByRestaurant(int restaurantId)
+        {
+            var tables = await _context.Tables
+                .Where(t => t.RestaurantID == restaurantId)
+                .Select(t => new RestaurantTablesDTO
+                {
+                    TableID = t.TableID,
+                    SeatingCapacity = t.SeatingCapacity,
+                    IsAvailable = t.IsAvailable
+                })
+                .ToListAsync();
+
+            if (!tables.Any())
+            {
+                return NotFound(new { Message = "No tables found for the specified restaurant ID." });
+            }
+
+            return Ok(tables);
+        }
+
 
         private bool TableExists(int id)
         {

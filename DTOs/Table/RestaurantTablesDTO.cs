@@ -1,12 +1,11 @@
-﻿using RestaurantReservation.DTOs.TableReservation;
+using RestaurantReservation.DTOs.TableReservation;
 
 namespace RestaurantReservation.DTOs.Table
 {
-    public class TableDetailsDTO
+    public class RestaurantTablesDTO
     {
         public int TableID { get; set; }
         public int SeatingCapacity { get; set; }
         public bool IsAvailable { get; set; }
-        public ICollection<TableReservationDTO> TableReservations { get; set; }
     }
 }

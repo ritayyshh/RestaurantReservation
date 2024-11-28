@@ -92,6 +92,14 @@ namespace RestaurantReservation
 
             builder.Services.AddScoped<ITokenService, TokenService>();
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowReactApp",
+                    policy => policy.WithOrigins("http://localhost:3000")
+                                    .AllowAnyMethod()
+                                    .AllowAnyHeader());
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -106,6 +114,7 @@ namespace RestaurantReservation
             app.UseAuthentication();
             app.UseAuthorization();
 
+            app.UseCors("AllowReactApp");
 
             app.MapControllers();
 

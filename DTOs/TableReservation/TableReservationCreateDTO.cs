@@ -3,6 +3,7 @@
     public class TableReservationCreateDTO
     {
         public int TableID { get; set; }
+        public string UserID { get; set; }
         public string Username { get; set; } = string.Empty;
         public int RestaurantID { get; set; }
         public DateTime ReservationDate { get; set; }

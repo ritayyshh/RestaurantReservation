@@ -51,13 +51,13 @@ namespace RestaurantReservation.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "4040c34c-e2be-4220-beb6-5a830a52e387",
+                            Id = "701fc01e-d574-4a54-ba29-5a5ea23e3958",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "f27da393-aa25-4717-9a4d-a95ef4c173ff",
+                            Id = "f2ab1940-10e1-4122-9442-07fbdfb3c422",
                             Name = "User",
                             NormalizedName = "USER"
                         });

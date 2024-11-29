@@ -91,5 +91,27 @@ namespace RestaurantReservation.Controllers
                 }
             );
         }
+        [HttpGet("getUserIdByUsername/{username}")]
+        public async Task<IActionResult> GetUserIdByUsername(string username)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(username))
+                    return BadRequest("Username cannot be empty");
+
+                // Find user by username (ignoring case)
+                var user = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName.ToLower() == username.ToLower());
+
+                if (user == null)
+                    return NotFound("User not found");
+
+                // Return userId
+                return Ok(new { userId = user.Id });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
     }
 }

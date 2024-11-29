@@ -116,6 +116,7 @@ namespace RestaurantReservation.Controllers
             var tableReservation = new TableReservation
             {
                 TableID = createDTO.TableID,
+                UserID = createDTO.UserID,
                 Username = createDTO.Username,
                 RestaurantID = createDTO.RestaurantID,
                 ReservationDate = createDTO.ReservationDate,

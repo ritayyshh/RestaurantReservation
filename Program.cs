@@ -20,7 +20,7 @@ namespace RestaurantReservation
 
             //Application Database Context
             builder.Services.AddDbContext<AppDBContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("HostedConnection")));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
             //Identity
             builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
             {

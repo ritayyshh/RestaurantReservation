@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace RestaurantReservation.Migrations
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -371,8 +371,8 @@ namespace RestaurantReservation.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "4040c34c-e2be-4220-beb6-5a830a52e387", null, "Admin", "ADMIN" },
-                    { "f27da393-aa25-4717-9a4d-a95ef4c173ff", null, "User", "USER" }
+                    { "701fc01e-d574-4a54-ba29-5a5ea23e3958", null, "Admin", "ADMIN" },
+                    { "f2ab1940-10e1-4122-9442-07fbdfb3c422", null, "User", "USER" }
                 });
 
             migrationBuilder.CreateIndex(

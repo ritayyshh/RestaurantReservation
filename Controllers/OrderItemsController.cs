@@ -75,6 +75,7 @@ public class OrderItemsController : ControllerBase
         }
 
         orderItem.MenuItemID = orderItemDTO.MenuItemID;
+        orderItem.RestaurantID = orderItemDTO.RestaurantID;
         orderItem.Quantity = orderItemDTO.Quantity;
 
         _context.Entry(orderItem).State = EntityState.Modified;

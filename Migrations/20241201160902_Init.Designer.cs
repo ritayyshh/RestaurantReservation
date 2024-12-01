@@ -12,8 +12,8 @@ using RestaurantReservation.Data;
 namespace RestaurantReservation.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20241129094233_init")]
-    partial class init
+    [Migration("20241201160902_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,13 +54,13 @@ namespace RestaurantReservation.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "701fc01e-d574-4a54-ba29-5a5ea23e3958",
+                            Id = "edac420d-1ea5-4a86-af1f-b05bd3979010",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "f2ab1940-10e1-4122-9442-07fbdfb3c422",
+                            Id = "e38d87eb-da53-43f0-b9f9-d6ea69296f2d",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -289,7 +289,13 @@ namespace RestaurantReservation.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ReservationID")
+                        .HasColumnType("int");
+
                     b.Property<int>("RestaurantID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TableID")
                         .HasColumnType("int");
 
                     b.Property<decimal>("TotalAmount")
@@ -323,6 +329,9 @@ namespace RestaurantReservation.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RestaurantID")
                         .HasColumnType("int");
 
                     b.HasKey("OrderItemID");
@@ -433,14 +442,14 @@ namespace RestaurantReservation.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TableReservationID"));
 
-                    b.Property<DateTime>("EndTime")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("EndTime")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PartySize")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("ReservationDate")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("ReservationDate")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("RestaurantID")
                         .HasColumnType("int");
@@ -449,14 +458,13 @@ namespace RestaurantReservation.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("StartTime")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("StartTime")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("TableID")
                         .HasColumnType("int");
 
                     b.Property<string>("UserID")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Username")
@@ -642,9 +650,7 @@ namespace RestaurantReservation.Migrations
 
                     b.HasOne("RestaurantReservation.Models.AppUser", "User")
                         .WithMany("TableReservations")
-                        .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserID");
 
                     b.Navigation("Table");
 

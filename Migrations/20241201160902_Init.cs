@@ -316,6 +316,7 @@ namespace RestaurantReservation.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     OrderID = table.Column<int>(type: "int", nullable: false),
                     MenuItemID = table.Column<int>(type: "int", nullable: false),
+                    RestaurantID = table.Column<int>(type: "int", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -372,8 +373,8 @@ namespace RestaurantReservation.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "6e294bed-07c5-4cfb-b2bd-e24a8b622d89", null, "Admin", "ADMIN" },
-                    { "b77116a3-5d44-4160-872c-a9e1eea92fee", null, "User", "USER" }
+                    { "e38d87eb-da53-43f0-b9f9-d6ea69296f2d", null, "User", "USER" },
+                    { "edac420d-1ea5-4a86-af1f-b05bd3979010", null, "Admin", "ADMIN" }
                 });
 
             migrationBuilder.CreateIndex(

@@ -51,13 +51,13 @@ namespace RestaurantReservation.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "6e294bed-07c5-4cfb-b2bd-e24a8b622d89",
+                            Id = "edac420d-1ea5-4a86-af1f-b05bd3979010",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "b77116a3-5d44-4160-872c-a9e1eea92fee",
+                            Id = "e38d87eb-da53-43f0-b9f9-d6ea69296f2d",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -326,6 +326,9 @@ namespace RestaurantReservation.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RestaurantID")
                         .HasColumnType("int");
 
                     b.HasKey("OrderItemID");
